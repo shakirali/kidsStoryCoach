@@ -1,0 +1,30 @@
+# Python caches and virtualenvs
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# IDE/editor
+.idea/
+.vscode/
+.DS_Store
+
+# Coverage and build artifacts
+.coverage
+coverage.xml
+htmlcov/
+build/
+dist/
+
+# Local environment
+.env
+.env.*
+
+# Generated assets
+story_images/
+
+# Node/gradio cache (if created)
+node_modules/
