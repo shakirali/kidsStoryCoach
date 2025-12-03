@@ -1,4 +1,4 @@
-"""StoryCoach Runner and Session Service for CLI and programmatic usage."""
+"""StoryCoach Runner and Session Service for programmatic usage."""
 
 from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner

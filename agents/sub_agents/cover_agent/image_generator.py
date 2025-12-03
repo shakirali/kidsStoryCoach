@@ -1,8 +1,12 @@
 """Image generation utility for cover and page illustrations."""
 
+import hashlib
 from pathlib import Path
 from typing import Optional
+
+import requests
 from openai import OpenAI
+
 from config.settings import get_config
 
 
@@ -69,12 +73,10 @@ def generate_image(prompt: str, output_dir: Optional[str] = None, prefix: str = 
             image_url = response.data[0].url
         
         # Download and save the image
-        import requests
         image_response = requests.get(image_url)
         image_response.raise_for_status()
         
         # Generate filename
-        import hashlib
         filename_hash = hashlib.md5(prompt.encode()).hexdigest()[:8]
         filename = f"{prefix}_{filename_hash}.png"
         filepath = Path(output_dir) / filename
