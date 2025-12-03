@@ -10,6 +10,7 @@ This test module verifies that the judge agent:
 import json
 import re
 import pytest
+import asyncio
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from agents.evaluation.judge_agent import judge_agent
@@ -71,6 +72,25 @@ def judge_runner(session_service):
         agent=judge_agent,
         session_service=session_service
     )
+
+
+@pytest.fixture(scope="session", autouse=True)
+def cleanup_async_resources():
+    """Ensure async resources are properly cleaned up after all tests."""
+    yield
+    # Try to clean up any pending async tasks
+    try:
+        loop = asyncio.get_event_loop()
+        if loop.is_running():
+            # If loop is running, schedule cleanup
+            pending = asyncio.all_tasks(loop)
+            if pending:
+                for task in pending:
+                    if not task.done():
+                        task.cancel()
+    except RuntimeError:
+        # No event loop, nothing to clean up
+        pass
 
 
 def parse_json_response(text: str) -> dict:
