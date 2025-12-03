@@ -13,6 +13,38 @@ from google.genai import types
 from .judge_agent import judge_agent
 
 
+async def call_agent_async(
+    query: str,
+    runner: Runner,
+    user_id: str,
+    session_id: str
+) -> str:
+    """
+    Send a query to any agent asynchronously and return the final response text.
+    
+    Args:
+        query: The input query
+        runner: The Runner instance for the agent
+        user_id: User identifier
+        session_id: Session identifier
+        
+    Returns:
+        The final response text as a string
+    """
+    # Prepare the user's message in ADK format
+    content = types.Content(role='user', parts=[types.Part(text=query)])
+
+    final_response_text = ""
+
+    async for event in runner.run_async(user_id=user_id, session_id=session_id, new_message=content):
+        if event.is_final_response():
+            if event.content and event.content.parts:
+                final_response_text = event.content.parts[0].text
+            break
+
+    return final_response_text
+
+
 def parse_json_response(text: str) -> dict:
     """
     Parse JSON from judge agent response.
@@ -64,18 +96,7 @@ async def call_judge_async(
     Returns:
         The final response text as a string
     """
-    # Prepare the user's message in ADK format
-    content = types.Content(role='user', parts=[types.Part(text=query)])
-
-    final_response_text = ""
-
-    async for event in runner.run_async(user_id=user_id, session_id=session_id, new_message=content):
-        if event.is_final_response():
-            if event.content and event.content.parts:
-                final_response_text = event.content.parts[0].text
-            break
-
-    return final_response_text
+    return await call_agent_async(query, runner, user_id, session_id)
 
 
 async def evaluate_with_judge(
