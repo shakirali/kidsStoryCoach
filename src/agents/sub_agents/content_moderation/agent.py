@@ -8,7 +8,7 @@ dangerous content, hate speech, and harassment.
 from google.adk.agents import Agent
 from google.adk.tools.agent_tool import AgentTool
 from google.genai import types
-from prompts import instruction_content_moderation_agent
+from .prompts import instruction_content_moderation_agent
 
 from src.config.settings import get_config
 

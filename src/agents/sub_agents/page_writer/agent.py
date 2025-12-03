@@ -7,7 +7,7 @@ It provides light grammar correction and optional story starters without taking 
 from google.adk.agents import Agent
 from google.adk.tools.agent_tool import AgentTool
 from google.genai import types
-from prompts import instruction_page_writer_agent
+from .prompts import instruction_page_writer_agent
 
 from src.config.settings import get_config
 

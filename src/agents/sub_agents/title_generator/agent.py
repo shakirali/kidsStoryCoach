@@ -6,7 +6,7 @@ This agent generates engaging, age-appropriate story titles based on the child's
 from google.adk.agents import Agent
 from google.adk.tools.agent_tool import AgentTool
 from google.genai import types
-from prompts import instruction_title_agent
+from .prompts import instruction_title_agent
 
 from src.config.settings import get_config
 

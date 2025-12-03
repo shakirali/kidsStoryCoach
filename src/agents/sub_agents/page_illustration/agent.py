@@ -7,7 +7,7 @@ It maintains consistent art style and colour palette across all pages.
 from google.adk.agents import Agent
 from google.adk.tools.agent_tool import AgentTool
 from google.genai import types
-from prompts import instruction_page_illustration_agent
+from .prompts import instruction_page_illustration_agent
 
 from src.config.settings import get_config
 
