@@ -23,8 +23,8 @@ dist/
 .env
 .env.*
 
-# Generated assets
-story_images/
-
 # Node/gradio cache (if created)
 node_modules/
+
+# Generated assets
+outputs/
