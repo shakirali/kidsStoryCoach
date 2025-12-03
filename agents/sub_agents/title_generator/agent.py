@@ -8,12 +8,15 @@ from google.adk.tools.agent_tool import AgentTool
 from google.genai import types
 from .prompts import instruction_title_agent
 
-from src.config.settings import get_config
+from config.settings import get_config
+from google.adk.models.lite_llm import LiteLlm
 
 config = get_config()
 
+model = LiteLlm(model=config.text_model_name)
+
 title_generator_agent = Agent(
-    model=config.text_model_name,
+    model=model,
     name="title_agent",
     instruction=instruction_title_agent(),
     generate_content_config=types.GenerateContentConfig(temperature=0.7),

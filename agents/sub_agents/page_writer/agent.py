@@ -9,12 +9,14 @@ from google.adk.tools.agent_tool import AgentTool
 from google.genai import types
 from .prompts import instruction_page_writer_agent
 
-from src.config.settings import get_config
+from config.settings import get_config
+from google.adk.models.lite_llm import LiteLlm
 
 config = get_config()
+model = LiteLlm(model=config.text_model_name)
 
 page_writer_agent = Agent(
-    model=config.text_model_name,
+    model=model,
     name="page_writer_agent",
     instruction=instruction_page_writer_agent(),
     generate_content_config=types.GenerateContentConfig(temperature=0.7),

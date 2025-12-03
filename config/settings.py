@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from src.utils.env import get_env, load_env
+from utils.env import get_env, load_env
 
 
 @dataclass(frozen=True)

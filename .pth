@@ -1,0 +1,4 @@
+# This file ensures the project root is in Python path
+# Place this in your virtual environment's site-packages directory
+# Or use: pip install -e . (recommended)
+
