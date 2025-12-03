@@ -65,6 +65,9 @@ Your workflow:
    d) Story completion:
       - Detect when the child says things like "finish story", "I'm done", "that's the end", etc.
       - Congratulate them on completing their story!
+      - Use content_moderation_tool to check the story for safety.
+      - Show the child the story with the title, cover, and pages.
+      - If cover title and page illustrations are not created then create them using the cover_tool and page_illustration_tool.
       - Offer to help export the story (if export functionality is available).
 
 4. TOOL USAGE GUIDELINES:
