@@ -1,6 +1,7 @@
-google-adk
+google-adk>=1.19.0
 openai>=1.0.0
 google-cloud-aiplatform>=1.0.0
 gradio>=6.0.0
-litellm
-requests
+litellm>=1.80.5
+requests>=2.32.5
+pytest>=9.0.1
